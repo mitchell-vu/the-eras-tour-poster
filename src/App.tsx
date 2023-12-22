@@ -1,14 +1,17 @@
+import { Poster, ToolBar } from '@/components';
+import AppProvider from '@/contexts/AppContext';
 import React from 'react';
-import { Poster } from './components';
 
 const App: React.FC = () => {
-  const [title] = React.useState('Taylor Swift');
-  const [subTitle] = React.useState('The Eras Tour');
-
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <Poster title={title} subTitle={subTitle} />
-    </div>
+    <AppProvider>
+      <main className="flex h-screen w-screen flex-col overflow-hidden md:flex-row">
+        <div className="flex flex-1 items-center justify-center overflow-auto p-10">
+          <Poster />
+        </div>
+        <ToolBar />
+      </main>
+    </AppProvider>
   );
 };
 
