@@ -1,0 +1,15 @@
+/* IMPORT FONTS */
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/fonts/Pistilli-Roman.otf);
+  font-family: Pistilli-Roman;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-eras-midnight;
+}
