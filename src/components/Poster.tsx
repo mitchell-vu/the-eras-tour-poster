@@ -1,4 +1,6 @@
 import { useApp } from '@/contexts/AppContext';
+// TODO: Remove these
+// Build your own function to resize text
 import { AutoTextSize } from 'auto-text-size';
 import * as React from 'react';
 import { Tile } from '.';
@@ -100,7 +102,10 @@ const Poster: React.FunctionComponent = () => {
   const { title, subTitle } = useApp();
 
   return (
-    <div className="flex h-[480px] w-[300px] flex-col items-center gap-4 bg-white p-4 md:h-[800px] md:w-[500px] md:p-8">
+    <div
+      id="poster"
+      className="flex h-[480px] w-[300px] flex-col items-center gap-4 bg-white p-4 md:h-[800px] md:w-[500px] md:p-8"
+    >
       <div className="grid grid-cols-3 border-l-2 border-t-2 border-black">
         {ERAS.map(({ key, className, title, filter }) => (
           <Tile key={key} className={className} title={title} filter={filter} />
