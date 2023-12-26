@@ -1,3 +1,4 @@
+import { useApp } from '@/contexts/AppContext';
 import { ArrowCircleUp } from '@phosphor-icons/react';
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -7,17 +8,22 @@ import { v4 } from 'uuid';
 interface ITileProps {
   className?: string;
   title: string;
+  era: string;
   filter?: {
     feColorMatrix: string;
   };
   color?: string;
 }
 
-const Tile: React.FunctionComponent<ITileProps> = ({ className, title, filter }) => {
-  const [imageUrl, setImageUrl] = React.useState<string>();
+const Tile: React.FC<ITileProps> = ({ className, era, title, filter }) => {
+  const { images, setImage } = useApp();
+
+  const tileImageUrl = React.useMemo(() => images.find(({ era: imgEra }) => era === imgEra), [images, era])?.imageUrl;
+  console.log(tileImageUrl);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
-      setImageUrl(URL.createObjectURL(acceptedFiles[0]));
+      setImage(URL.createObjectURL(acceptedFiles[0]), era);
     },
   });
 
@@ -33,14 +39,14 @@ const Tile: React.FunctionComponent<ITileProps> = ({ className, title, filter })
       )}
       aria-label={title}
     >
-      {imageUrl && (
+      {tileImageUrl && (
         <svg style={{ width: '100%', height: '100%' }}>
           <filter id={id} colorInterpolationFilters="sRGB">
             <feColorMatrix type="matrix" values={filter?.feColorMatrix ?? '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0'} />
           </filter>
           <image
             filter={`url(#${id})`}
-            xlinkHref={imageUrl}
+            xlinkHref={tileImageUrl}
             x="0"
             y="0"
             width="100%"

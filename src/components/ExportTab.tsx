@@ -1,7 +1,7 @@
 import { useApp } from '@/contexts/AppContext';
 import { ImageSquare } from '@phosphor-icons/react';
 import { saveAs } from 'file-saver';
-import { toPng } from 'html-to-image';
+import { domToPng } from 'modern-screenshot';
 import React from 'react';
 
 const ExportTab: React.FC = () => {
@@ -11,7 +11,7 @@ const ExportTab: React.FC = () => {
     const poster = document.getElementById('poster');
     if (!poster) return;
 
-    const dataURL = await toPng(poster!);
+    const dataURL = await domToPng(poster);
     saveAs(dataURL, `${title.toLowerCase().split(' ').join('-')}.png`);
   };
 

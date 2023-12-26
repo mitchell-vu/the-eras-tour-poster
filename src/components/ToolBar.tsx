@@ -1,6 +1,4 @@
 import { Tab } from '@headlessui/react';
-// TODO: Remove these
-// Build your own function to download the image
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import EditTab from './EditTab';

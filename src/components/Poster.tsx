@@ -5,15 +5,37 @@ import { Tile } from '.';
 // TODO: Remove these
 // Build your own function to resize text
 import { AutoTextSize } from 'auto-text-size';
+import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
-const Poster: React.FunctionComponent = () => {
+interface IPosterProps {
+  size?: 'small' | 'large';
+  className?: string;
+}
+
+const Poster: React.FC<IPosterProps> = ({ size, className }) => {
   const { title, subTitle } = useApp();
 
   return (
-    <div id="poster" className="flex w-[292px] flex-col items-center gap-4 bg-white p-4 lg:w-[486px] lg:gap-6 lg:p-8">
-      <div className="grid grid-cols-3 border-l-2 border-t-2 border-black">
-        {ERAS.map(({ key, ...era }) => (
-          <Tile key={key} {...era} />
+    <div
+      className={twMerge(
+        'flex w-[292px] flex-col items-center gap-4 bg-white p-4 lg:w-[486px] lg:gap-6 lg:p-8',
+        className,
+      )}
+    >
+      <div
+        className={twMerge(
+          'grid grid-cols-3 border-l-2 border-t-2 border-black',
+          size === 'large' && 'border-l-8 border-t-8',
+        )}
+      >
+        {ERAS.map(({ key, className, ...era }) => (
+          <Tile
+            key={key}
+            era={key}
+            {...era}
+            className={classNames(className, size === 'large' && '!w-[514px] border-b-8 border-r-8')}
+          />
         ))}
       </div>
 
@@ -21,7 +43,7 @@ const Poster: React.FunctionComponent = () => {
         <AutoTextSize
           mode="oneline"
           minFontSizePx={20}
-          maxFontSizePx={160}
+          maxFontSizePx={200}
           fontSizePrecisionPx={0.1}
           className="scale-y-150 leading-tight text-black"
           style={{ fontSize: 46.8854 }}
@@ -32,7 +54,7 @@ const Poster: React.FunctionComponent = () => {
         <AutoTextSize
           mode="oneline"
           minFontSizePx={20}
-          maxFontSizePx={160}
+          maxFontSizePx={200}
           fontSizePrecisionPx={0.1}
           className="leading-tight text-black"
           style={{ fontSize: 44.2557 }}
