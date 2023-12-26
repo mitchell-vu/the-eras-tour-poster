@@ -3,4 +3,3 @@
 
 // TODO: Remove these
 declare module 'auto-text-size';
-declare module 'downloadjs';
