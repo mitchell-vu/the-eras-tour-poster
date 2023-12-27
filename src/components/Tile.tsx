@@ -19,7 +19,6 @@ const Tile: React.FC<ITileProps> = ({ className, era, title, filter }) => {
   const { images, setImage } = useApp();
 
   const tileImageUrl = React.useMemo(() => images.find(({ era: imgEra }) => era === imgEra), [images, era])?.imageUrl;
-  console.log(tileImageUrl);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {

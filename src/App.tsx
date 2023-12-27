@@ -1,8 +1,18 @@
 import { Poster, ToolBar } from '@/components';
 import AppProvider from '@/contexts/AppContext';
-import React from 'react';
+import React, { useEffect } from 'react';
+import WebFont from 'webfontloader';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    WebFont.load({
+      custom: {
+        families: ['Pistilli-Roman'],
+        urls: ['../index.css'],
+      },
+    });
+  }, []);
+
   return (
     <AppProvider>
       <div className="relative h-screen w-screen overflow-hidden">

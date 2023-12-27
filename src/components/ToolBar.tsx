@@ -12,9 +12,9 @@ const TABS = [
 
 const ToolBar: React.FC = () => {
   return (
-    <div className="flex flex-col bg-[#E0EDFD] md:min-w-[360px] lg:min-w-[520px] xl:min-w-[640px]">
+    <div className="flex h-[40vh] flex-col bg-[#E0EDFD] md:h-full md:min-w-[360px] lg:min-w-[520px] xl:min-w-[640px]">
       <Tab.Group>
-        <Tab.List className="flex space-x-2 p-8">
+        <Tab.List className="flex space-x-2 p-4 md:p-8">
           {TABS.map(({ tab, key }) => (
             <Tab
               key={key}
@@ -29,7 +29,7 @@ const ToolBar: React.FC = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="overflow-y-auto px-8 pb-8">
+        <Tab.Panels className="overflow-y-auto p-4 pt-0 md:p-8 md:pt-0">
           {TABS.map(({ key, panel }) => (
             <Tab.Panel key={key}>{panel}</Tab.Panel>
           ))}
